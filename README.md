@@ -1,1 +1,6 @@
 # drive-quota-manager
+Ubuntu offers a package to control user disk usage known as quota. This package will restrict any file writing when the quota is reached. A quota can be set to some amount of the storage drive overall size. When this quota is reached, the package returns errno122. This can be used in our logging script to terminate data logging until the drive can be replaced. Initializing and managing the quota settings on the mounted drive can be automated. An example of this can be found in this repo. A tutorial for CL use of the package is [here](https://linuxhint.com/disk_quota_ubuntu/).
+
+Connected disks can be identified by **label** to be mounted automatically at startup. If all storage disks that are used by the system share an  identical label this will eliminate the need for any remote configuration at the time a drive is swapped. This can be done either by using the disks utility in the Ubuntu GUI or by editing `/etc/fstab` with: 
+
+    LABEL=Mydisk /mnt/Mydisk auto nosuid,nodev,nofail,x-gvfs-show 0 0
